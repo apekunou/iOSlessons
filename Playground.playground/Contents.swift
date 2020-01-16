@@ -30,6 +30,16 @@ var num1 = 5
 var num2 = 3
 double1 = Double(num1)/Double(num2)
 
+//ДЗ урок 2
+
+let constInt1 = 1
+var varInt1 = 1
+var varInt2 = constInt1 + varInt1
+varInt2 = constInt1 * varInt1
+var varDouble: Double = 1.2
+var varBoul: Bool = constInt1 == varInt1
+var varString = "Hello"
+
 
 
 
