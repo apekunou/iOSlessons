@@ -190,8 +190,8 @@ struct ProtocolStruct:GenericProtocol{
 
 var protocolStruct = ProtocolStruct(firstVariable: 1, genericProperty: 1)
 
-print(myCar is Vehicle)
-print(myCar is Int)
+//print(myCar is Vehicle)
+//print(myCar is Int)
 
 var i:Int
 
@@ -249,3 +249,180 @@ else
 {
     print(hw3Int!)
 }
+
+//LESSON 4
+//Set
+var tuple = (integer:1,double: 2.1,mystring: "ss")
+var tupleItem1 = tuple.0
+var tupleItem2 = tuple.1
+var tupleItem3 = tuple.mystring
+
+typealias MyCustomTupleType = (integer: Int, double: Double, mystring: String)
+
+var customTuple: MyCustomTupleType
+customTuple.integer = 1
+
+var customSet: Set<Int> = [1,2,3,4,5]
+customSet.count
+
+var subSet: Set<Int> = [3,5]
+var isSubset = subSet.isSubset( of: customSet)
+
+customSet.remove(6)
+customSet
+func functionname(param: Int) -> Int
+{
+    return param
+}
+
+var variable = functionname(param: 1)
+
+func color (_ red: Int? = 1, _ green: Int? = 1, _ blue: Int? = 1 )->Int
+{
+/*
+    guard let red = red,
+          let green = green,
+          let blue = blue
+        else {
+        return 0
+    }
+ */
+    return (red ?? 0) + (green ?? 0) + (blue ?? 0)
+}
+print(color())
+
+var op1: Int?
+var op2: Int?
+var int1: Int
+int1 = (op1 ?? 0) + (op2 ?? 0)
+
+struct CustomStruct2 {
+    internal func shortAction() {
+        
+    }
+    static func internalFunc() {
+        
+    }
+}
+
+var customStructVar = CustomStruct2()
+customStructVar.shortAction()
+//customStructVar.internalFunc()
+CustomStruct2.internalFunc()
+
+//Замыкания
+var customClosure: (Int, String) -> Void = {integerVal, stringVal in
+    print("closure is called")
+    print(integerVal)
+}
+
+var newClosure = customClosure
+
+newClosure(1, "2")
+
+var customClosure2: (Int, String) -> Void = {
+    print("closure is called")
+    print($0)
+    print($1)
+}
+customClosure(1, "2")
+
+typealias MyClosure = (Int, String) -> Void
+
+var omClosure : MyClosure = {
+    $0
+    $1
+}
+
+//HW Lesson 4
+
+// Написать функцию в которой необходимо:
+//1. Write a Swift program to check if two given arrays of integers have 0 as their first element.
+//произвести проверку двух массивов(Int) являются ли их первые элементы нулями и вывести соответствующее сообщение в консоль.
+print("HW4")
+func checkArrayElelemnts(firstArray: Array<Int>, secondArray: Array<Int>){
+    
+    var internalArray: [Int] = [1,2,3]
+    
+    print("Array func")
+    if firstArray[0] == 0 && secondArray[0] == 0
+    {
+        print("First elemnts of arrays are zero")
+    }
+    if !( firstArray.contains(3) || firstArray.contains(5)) && !( secondArray.contains(3) || secondArray.contains(5))
+    {
+        print("Arrays don't contain 3 and 5")
+    }
+    if firstArray.first != nil
+    {
+        if firstArray.first == firstArray.last
+        {
+            print("First array element is equal to last array element")
+        }
+        else{
+            print("First array element is not equal to last array element")
+        }
+    }
+    else
+    {
+        print("First Array is empty")
+    }
+    
+    internalArray.append(2)
+    internalArray.remove(at: 1)
+    internalArray[0] = 3
+    internalArray
+    print("Internal array size is \(internalArray.count)")
+    
+    var bookCard = [
+        "title"     : "War and Peace",
+        "author"   : "Tolstoy"
+    ]
+    bookCard["publisher"] = "BelarusDruk"
+    bookCard
+    bookCard["title"] = "War and World"
+    bookCard.removeValue(forKey: "publisher")
+    print("Dictionary Book Card size is \(bookCard.count)")
+    
+    var internalSet: Set<Int> = []
+    internalSet.insert(7)
+    internalSet
+    print("Internal set size is \(internalSet.count)")
+    
+}
+
+var hw4Array1 = [0,1,2,7,0]
+var hw4Array2 = [0,1,2,7]
+var hw4Array3:Array<Int> = []
+checkArrayElelemnts(firstArray: hw4Array1, secondArray: hw4Array2)
+
+hw4Array3 = hw4Array1 + hw4Array2
+
+typealias HwClosure = (Int, Int) -> Int
+
+var hwClosure: HwClosure = {firstInt, secondInt in
+    print("closure is called")
+    return firstInt + secondInt
+}
+
+func forClosure(int1:Int, int2:Int, closure:HwClosure )
+{
+    var resultInt: Int
+    resultInt = closure(int1, int2)
+    print("Result Int = \(resultInt)")
+}
+forClosure(int1: 1, int2: 2, closure: hwClosure)
+//2. Write a Swift program to test if an array of integers does not contain a 3 or a 5.
+//произвести проверку двух массивов(Int) на отсутствие в них элементов 3 и 5 и вывести соответствующее сообщение в консоль
+//3. Write a Swift program to check whether the first element and the last element of a given array of integers are equal.
+//произвести проверку одинаковы ли первый и последний элементы данного массива(Int) и вывести соответствующее сообщение в консоль
+//4. Write a Swift program that creates Array, adds an item, remove item, modify item and then prints size of the array.
+//проинициализировать массив, добавить в него элемент, удалить элемент, модифицировать какой-нибудь элемент и вывести в консоль размер массива(количество элементов)
+//5. Write a Swift program that creates Dictionary, adds an item, remove item, modify item and then prints size of the Dictionary.
+//проинициализировать словарь, добавить в него элемент, удалить элемент, модифицировать какой-нибудь элемент и вывести в консоль размер словаря(количество элементов)
+//6. Write a Swift program that creates Set, adds an item and then prints size of the Set.
+////проинициализировать Сет, добавить в него элемент и вывести в консоль размер Сета(количество элементов)
+//7. Create 2 arrays, and merge them.
+//проинициализировать 2 массива и объединить(можно в новом массиве)
+//8. Write a closure to sum 2 integers, pass closure as argument to function, where return the result of calling that closure.
+//Написать замыкание(closure), задача которого складывать 2 полученных аргумента типа Int и вернуть его или вывести в консоль.
