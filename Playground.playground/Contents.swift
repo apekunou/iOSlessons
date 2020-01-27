@@ -391,10 +391,13 @@ func checkArrayElelemnts(firstArray: Array<Int>, secondArray: Array<Int>){
     
 }
 
-var hw4Array1 = [0,1,2,7,0]
+var hw4Array1 = [0,1,3,2,7,0]
 var hw4Array2 = [0,1,2,7]
 var hw4Array3:Array<Int> = []
 checkArrayElelemnts(firstArray: hw4Array1, secondArray: hw4Array2)
+
+var filter = hw4Array1.filter({$0 == 3 || $0 == 5})
+filter
 
 hw4Array3 = hw4Array1 + hw4Array2
 
@@ -426,3 +429,124 @@ forClosure(int1: 1, int2: 2, closure: hwClosure)
 //проинициализировать 2 массива и объединить(можно в новом массиве)
 //8. Write a closure to sum 2 integers, pass closure as argument to function, where return the result of calling that closure.
 //Написать замыкание(closure), задача которого складывать 2 полученных аргумента типа Int и вернуть его или вывести в консоль.
+
+//Lesson 5
+
+do {
+    guard 1 < 0 else {
+        throw NSError(domain: "1", code: 401, userInfo: nil)
+    }
+}
+catch {
+    print(error)
+}
+var globalVar = 10
+var color = UIColor.red
+var closure: (Int) ->Void = {[weak color] integer in
+    print(globalVar, integer)
+}
+globalVar = 11
+print(globalVar)
+
+//Range
+let doubleClosedRange = 1...111.1
+let intClosedRange = 1...111 // 111>=value>=1
+
+let doubleHalfClosedRange: Range<Double> = -10..<10
+
+let oneSideRangeTo = ...10 //from min Int to 10
+
+let secondSideRangeTo = 10... // from 10 to Max
+
+secondSideRangeTo.contains(9)
+
+//Loop
+
+for index in 0...5 {
+ //   print(index)
+}
+
+//var optionalInt2:Int?
+//
+//func guardlet2 (){
+//    guard optionalInt2 as? Int else {
+//        print("alert in guardlet")
+//        return
+//    }
+//    print("In guardlet")
+//}
+//guardlet2()
+
+let autoArray = Array(repeating: 1, count: 5)
+
+for element in autoArray {
+ //   print(element)
+}
+
+for _ in -10...5 {
+//print(index)
+}
+
+for value in autoArray.enumerated()
+{
+    //print(value.element, value.offset)
+    guard value.offset == 2 else {continue} //break
+    print("Number 2:\(value.element)")
+}
+
+//HW Lesson 5
+
+/* Day 0 challenge
+ let inputString = readLine()! // get a line of input from stdin and save it to our variable
+
+ // Your first line of output goes here
+ print("Hello, World.")
+
+ // Write the second line of output
+
+ print(inputString)
+ */
+
+/* Interview warm up
+ import Foundation
+
+ // Complete the sockMerchant function below.
+ func sockMerchant(n: Int, ar: [Int]) -> Int {
+     var result = 0
+     var colors: Array<Int> = []
+     for element in ar
+     {
+         var index = colors.firstIndex(of: element)
+         if index != nil {
+             result+=1
+             colors.remove(at:index!)
+         }
+         else
+         {
+             colors.append(element)
+         }
+     }
+     return result
+ }
+
+ let stdout = ProcessInfo.processInfo.environment["OUTPUT_PATH"]!
+ FileManager.default.createFile(atPath: stdout, contents: nil, attributes: nil)
+ let fileHandle = FileHandle(forWritingAtPath: stdout)!
+
+ guard let n = Int((readLine()?.trimmingCharacters(in: .whitespacesAndNewlines))!)
+ else { fatalError("Bad input") }
+
+ guard let arTemp = readLine() else { fatalError("Bad input") }
+ let ar: [Int] = arTemp.split(separator: " ").map {
+     if let arItem = Int($0.trimmingCharacters(in: .whitespacesAndNewlines)) {
+         return arItem
+     } else { fatalError("Bad input") }
+ }
+
+ guard ar.count == n else { fatalError("Bad input") }
+
+ let result = sockMerchant(n: n, ar: ar)
+
+ fileHandle.write(String(result).data(using: .utf8)!)
+ fileHandle.write("\n".data(using: .utf8)!)
+ */
