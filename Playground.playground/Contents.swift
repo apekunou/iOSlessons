@@ -550,3 +550,98 @@ for value in autoArray.enumerated()
  fileHandle.write(String(result).data(using: .utf8)!)
  fileHandle.write("\n".data(using: .utf8)!)
  */
+
+//Lesson 6 Test
+/*1.
+ - Объявите одну константу x типа Int
+ - Объявите переменную y типа Double
+ - Объявите переменную sum типа Optional-Int  без начального значения
+ - Присвойте sum значение равное сумме x и y
+ */
+let x2 = 1
+var y = 2.2
+var sum:Int?
+
+sum = x2 + Int(y)
+
+/*:
+ 2. Разверните опционал sum и выведите в консоль. Обратите внимание чтобы в выводе отсутствовало Optional()
+ */
+if sum != nil
+{
+    print(sum!)
+}
+
+/*:
+ 3. Выведите в консоль четные числа от 2 до 2000
+ */
+var oddNumber = 2
+while oddNumber <= 20
+{
+    print(oddNumber)
+    oddNumber += 2
+}
+
+/*:
+ 4. Объявите новый тип ColorTuple, который является tuple из четырех компонентов (3 для цвета и один для прозрачности)
+ Объявите переменную myColor типа ColorTuple?
+ Задайте ей значение
+ */
+typealias ColorTuple = (red: Int, green: Int, blue: Int, alpha: Double)
+
+var myColor: ColorTuple? = (256,256,256,0.5)
+
+/*:
+ 5. Объявите функцию, которая получет на вход 3 параметра типа Int и возвращает результат типа ColorTuple
+ */
+func setColor(red: Int, green:Int, blue:Int) -> ColorTuple
+{
+    let alphaDefault = 0.5
+    return (red,green,blue,alphaDefault)
+}
+var myColorTest: ColorTuple
+myColorTest = setColor(red:1,green:2,blue:3)
+print(myColorTest)
+
+/*:
+ 6. Выведите в консоль результат работы вашей функции для summ
+ */
+
+/*:
+ 7. Напишите функцию, которая получает на вход Имя и Фамилию человека и возвращает tuple (String, String) с именем и фамилией
+ */
+typealias Name = (firstName:String, secondName:String)
+func getNames(firstName: String, secondName: String)->Name
+{
+    return (firstName, secondName)
+}
+/*:
+ 8. Напишите функцию, которая получает на вход массив [String?] и возвращает массив [String], в котором выброшены все nil значения из первого массива
+
+ Например из массива
+ ["a", nil, "b"] получится массив ["a", "b"]
+ */
+var inputString: [String?]
+var outputString: [String]
+
+inputString = ["a", nil, "b"]
+
+func unwrapString(input:[String?])->[String]
+{
+    var out:[String] = []
+    var size = 0
+    
+    size = input.count
+    for i in 0...(size - 1)
+    {
+        if input[i] != nil
+        {
+            out.append(input[i]!)
+        }
+    }
+    return out
+}
+
+outputString = unwrapString(input:inputString)
+
+print(outputString)
